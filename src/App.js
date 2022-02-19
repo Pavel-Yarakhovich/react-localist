@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from "styled-components";
+
+import MainPage from "./views/MainPage";
+
+const theme = {
+  dark: {
+    coal: "#1A1A1A",
+    graphite: "#333333",
+    steel: "#404040",
+    neon: "#00FFC2",
+    pale: "rgba(255, 255, 255, 0.8)",
+    poppy: "#ff0000",
+    white: "#ffffff",
+    paleEmerald: "rgba(0, 255, 194, 0.38)",
+    disabled: "rgba(255, 255, 255, 0.4)",
+    error: "#ff1212",
+  },
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme.dark}>
+      <MainPage />
+    </ThemeProvider>
   );
 }
 
