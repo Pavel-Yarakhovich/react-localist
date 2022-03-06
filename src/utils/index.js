@@ -9,7 +9,9 @@ export const prepareInitialData = (loadedData) => {
 };
 
 export const prepareInitialDataFromJson = (files) => {
+  console.log("files ", files);
   function handleFile(initialJSON) {
+    console.log("initialJSON ", initialJSON);
     const dataTitle = initialJSON.accessor;
     const initialData = { ...initialJSON };
     delete initialData.accessor;
@@ -33,25 +35,33 @@ export const prepareInitialDataFromJson = (files) => {
   return files.map((f) => handleFile(f));
 };
 
-export const combineTranslations = (translationFiles) => {
+export const combineTranslations = (translationFiles, templateFile) => {
+  console.log("templateFile ", templateFile);
   if (translationFiles.length === 0) return;
-  const mainFile = translationFiles[0];
+  const mainFile = translationFiles.find(
+    (file) => file.accessor === templateFile.name.replace(".json", "")
+  );
+
+  if (!mainFile) return null;
+
   const updatedMainFileData = Object.entries(mainFile.data).reduce(
     (acc, [key, value]) => ({ ...acc, [key]: { [mainFile.accessor]: value } }),
     {}
   );
   mainFile.data = updatedMainFileData;
-  translationFiles.slice(1).forEach((file) => {
-    Object.entries(file.data).forEach(([key, value]) => {
-      if (mainFile.data[key]) {
-        mainFile.data[key] = {
-          ...mainFile.data[key],
-          [file.accessor]: value,
-        };
-      }
+  translationFiles
+    .filter((file) => file.accessor !== templateFile.name.replace(".json", ""))
+    .forEach((file) => {
+      Object.entries(file.data).forEach(([key, value]) => {
+        if (mainFile.data[key]) {
+          mainFile.data[key] = {
+            ...mainFile.data[key],
+            [file.accessor]: value,
+          };
+        }
+      });
     });
-  });
-
+  console.log("MA DATA ", mainFile.data);
   const preparedData = Object.entries(mainFile.data).reduce(
     (acc, [uniqueKey, x]) => {
       const upd = Object.entries(x).reduce(

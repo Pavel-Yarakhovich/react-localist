@@ -44,6 +44,9 @@ const Styles = styled.div`
         background-color: transparent;
       }
     }
+
+    th {
+      color: ${({ theme }) => theme.neon};
   }
 
   .pagination {
@@ -93,7 +96,7 @@ const defaultColumn = {
 };
 
 // Be sure to pass our updateMyData and the skipPageReset option
-function Table({ columns, data, updateMyData, skipPageReset }) {
+function Table({ columns, data, updateMyData, skipPageReset, templateFile }) {
   // For this example, we're using pagination to illustrate how to stop
   // the current page from resetting when our data changes
   // Otherwise, nothing is different here.
@@ -136,9 +139,20 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
-              ))}
+              {headerGroup.headers.map((column) => {
+                const props = column.getHeaderProps();
+                console.log(
+                  props.key,
+                  props.key.replace("header_", "") === templateFile?.name
+                );
+                const is_template =
+                  props.key.replace("header_", "") === templateFile?.name;
+                return (
+                  <th {...props} istemplate={is_template ? 1 : 0}>
+                    {column.render("Header")}
+                  </th>
+                );
+              })}
             </tr>
           ))}
         </thead>
@@ -206,6 +220,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
 }
 
 const DataTable = (props) => {
+  console.log("PROSP ", props);
   const columns = React.useMemo(
     () => [
       {
@@ -261,6 +276,7 @@ const DataTable = (props) => {
         data={data}
         updateMyData={updateMyData}
         skipPageReset={skipPageReset}
+        templateFile={props.templateFile}
       />
       <ButtonsWrapper>
         <Button onClick={resetData} text="Reset Data" />

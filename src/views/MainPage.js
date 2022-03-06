@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import Dropzone from "../components/DropZone";
 import DataTable from "../components/DataTable";
 import Steps from "../components/Steps";
+import ThemeToggle from "../components/ThemeToggle";
 
 import { prepareInitialDataFromJson, combineTranslations } from "../utils";
 
@@ -75,7 +76,7 @@ const stepsArr = [
   { key: steps.saveDownload, title: "Save & Download" },
 ];
 
-const MainPage = () => {
+const MainPage = ({ toggleTheme, currTheme }) => {
   // Data states
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [data, setData] = useState({});
@@ -113,9 +114,16 @@ const MainPage = () => {
 
   useEffect(() => {
     if (uploadedFiles?.length !== chosenFiles?.length) return;
-    const data = combineTranslations(prepareInitialDataFromJson(chosenFiles));
-    setData(data);
-  }, [chosenFiles, uploadedFiles]);
+    if (!templateFile) {
+      setData(null);
+    } else {
+      const data = combineTranslations(
+        prepareInitialDataFromJson(chosenFiles),
+        templateFile
+      );
+      setData(data);
+    }
+  }, [chosenFiles, uploadedFiles, templateFile]);
 
   useEffect(() => {
     let content;
@@ -139,7 +147,9 @@ const MainPage = () => {
         );
         break;
       case steps.edit:
-        content = data ? <DataTable data={data} /> : null;
+        content = data ? (
+          <DataTable data={data} templateFile={templateFile} />
+        ) : null;
         break;
     }
 
@@ -150,6 +160,7 @@ const MainPage = () => {
     <Wrapper>
       <Title>
         <h1>React-localist</h1>
+        <ThemeToggle onToggle={toggleTheme} currTheme={currTheme} />
       </Title>
       <Content>
         <Steps steps={stepsArr} currStep={currStep} setCurrStep={setCurrStep} />
