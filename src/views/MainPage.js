@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import Dropzone from "../components/DropZone";
 import DataTable from "../components/DataTable";
 import Steps from "../components/Steps";
+import UserBlock from "../components/UserBlock";
 
 import { prepareInitialDataFromJson, combineTranslations } from "../utils";
 
@@ -42,7 +43,7 @@ const Title = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   background: ${({ theme }) => theme.coal};
 
   h1 {
@@ -150,6 +151,7 @@ const MainPage = () => {
     <Wrapper>
       <Title>
         <h1>React-localist</h1>
+        <UserBlock />
       </Title>
       <Content>
         <Steps steps={stepsArr} currStep={currStep} setCurrStep={setCurrStep} />

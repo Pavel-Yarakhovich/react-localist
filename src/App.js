@@ -1,6 +1,10 @@
+import { useAuth0 } from "@auth0/auth0-react";
+
 import { ThemeProvider } from "styled-components";
 
 import MainPage from "./views/MainPage";
+import LoginButton from "./components/LoginButton";
+import LogoutButton from "./components/LogoutButton";
 
 const theme = {
   dark: {
@@ -18,9 +22,13 @@ const theme = {
 };
 
 function App() {
+  const { user } = useAuth0();
   return (
     <ThemeProvider theme={theme.dark}>
       <MainPage />
+      {JSON.stringify(user, null, 2)}
+      <LoginButton />
+      <LogoutButton />
     </ThemeProvider>
   );
 }

@@ -263,8 +263,8 @@ const DataTable = (props) => {
         skipPageReset={skipPageReset}
       />
       <ButtonsWrapper>
-        <Button onClick={resetData} text="Reset Data" />
-        <Button onClick={downloadUpdatedData} text="Download" />
+        <Button onClick={resetData}>Reset Data</Button>
+        <Button onClick={downloadUpdatedData}>Download</Button>
       </ButtonsWrapper>
     </Styles>
   );
