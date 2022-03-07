@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledButton = styled.button`
   padding: 10px;
   background: ${({ theme }) =>
-    `linear-gradient(64deg, ${theme.coal}, ${theme.steel})`};
+    `linear-gradient(64deg, ${theme.neon}, ${theme.steel})`};
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.15);
   color: ${({ theme }) => theme.white};
   display: flex;
@@ -18,10 +18,13 @@ const StyledButton = styled.button`
   &:hover {
     color: ${({ theme }) => theme.neon};
   }
+  ${({ styles }) => styles}
 `;
 
-const Button = ({ text, onClick }) => (
-  <StyledButton onClick={onClick}>{text}</StyledButton>
+const Button = ({ onClick, children, styles }) => (
+  <StyledButton onClick={onClick} styles={styles}>
+    {children}
+  </StyledButton>
 );
 
 export default Button;

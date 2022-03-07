@@ -3,6 +3,8 @@ import { useState, useEffect, useCallback } from "react";
 import Dropzone from "../components/DropZone";
 import DataTable from "../components/DataTable";
 import Steps from "../components/Steps";
+import UserBlock from "../components/UserBlock";
+import ThemeToggle from "../components/ThemeToggle";
 
 import { prepareInitialDataFromJson, combineTranslations } from "../utils";
 
@@ -38,11 +40,11 @@ const Title = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  padding: 10px 0;
+  padding: 10px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background: ${({ theme }) => theme.coal};
 
   h1 {
@@ -75,7 +77,7 @@ const stepsArr = [
   { key: steps.saveDownload, title: "Save & Download" },
 ];
 
-const MainPage = () => {
+const MainPage = ({ toggleTheme, currTheme }) => {
   // Data states
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [data, setData] = useState({});
@@ -113,9 +115,16 @@ const MainPage = () => {
 
   useEffect(() => {
     if (uploadedFiles?.length !== chosenFiles?.length) return;
-    const data = combineTranslations(prepareInitialDataFromJson(chosenFiles));
-    setData(data);
-  }, [chosenFiles, uploadedFiles]);
+    if (!templateFile) {
+      setData(null);
+    } else {
+      const data = combineTranslations(
+        prepareInitialDataFromJson(chosenFiles),
+        templateFile
+      );
+      setData(data);
+    }
+  }, [chosenFiles, uploadedFiles, templateFile]);
 
   useEffect(() => {
     let content;
@@ -139,7 +148,9 @@ const MainPage = () => {
         );
         break;
       case steps.edit:
-        content = data ? <DataTable data={data} /> : null;
+        content = data ? (
+          <DataTable data={data} templateFile={templateFile} />
+        ) : null;
         break;
     }
 
@@ -149,7 +160,9 @@ const MainPage = () => {
   return (
     <Wrapper>
       <Title>
+        <ThemeToggle onToggle={toggleTheme} currTheme={currTheme} />
         <h1>React-localist</h1>
+        <UserBlock />
       </Title>
       <Content>
         <Steps steps={stepsArr} currStep={currStep} setCurrStep={setCurrStep} />
