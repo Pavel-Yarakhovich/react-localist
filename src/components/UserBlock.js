@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import Button from "../shared/Button";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
 
 import styled from "styled-components";
 
@@ -17,6 +18,7 @@ const UserAvatar = styled.img`
   object-fit: cover;
   object-position: center;
   margin-right: 10px;
+  border: 2px solid ${({ theme }) => theme.neon};
 `;
 
 const UserName = styled.div`
@@ -25,22 +27,32 @@ const UserName = styled.div`
   color: ${({ theme }) => theme.white};
 `;
 
+const skeletonButton = `
+    min-width: 10px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 1px 1px 4px rgb(0 0 0 / 10%);
+`;
+
 const UserBlock = () => {
   const { user, loginWithRedirect, logout } = useAuth0();
-  console.log("USER ", user);
+
   return (
     <Wrapper>
       {user ? (
-        <Fragment>
+        <>
           <UserAvatar src={user.picture} alt={`${user.name} avatar`} />
           <UserName>{user.name}</UserName>
-          <Button onClick={() => logout()}>logout</Button>
-        </Fragment>
+          <Button onClick={() => logout()} styles={skeletonButton}>
+            <BiLogOut fontSize={"1.25rem"} />
+          </Button>
+        </>
       ) : (
-        <Fragment>
-          {/* <ImagePlaceholder /> */}
-          <Button onClick={() => loginWithRedirect()}>login</Button>
-        </Fragment>
+        <>
+          <Button onClick={() => loginWithRedirect()} styles={skeletonButton}>
+            <BiLogIn fontSize={"1.25rem"} />
+          </Button>
+        </>
       )}
     </Wrapper>
   );

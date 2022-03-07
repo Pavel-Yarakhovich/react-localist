@@ -40,11 +40,11 @@ const Title = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  padding: 10px 0;
+  padding: 10px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   background: ${({ theme }) => theme.coal};
 
   h1 {
@@ -160,9 +160,9 @@ const MainPage = ({ toggleTheme, currTheme }) => {
   return (
     <Wrapper>
       <Title>
+        <ThemeToggle onToggle={toggleTheme} currTheme={currTheme} />
         <h1>React-localist</h1>
         <UserBlock />
-        <ThemeToggle onToggle={toggleTheme} currTheme={currTheme} />
       </Title>
       <Content>
         <Steps steps={stepsArr} currStep={currStep} setCurrStep={setCurrStep} />

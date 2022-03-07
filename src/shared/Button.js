@@ -18,10 +18,13 @@ const StyledButton = styled.button`
   &:hover {
     color: ${({ theme }) => theme.neon};
   }
+  ${({ styles }) => styles}
 `;
 
-const Button = ({ onClick, children }) => (
-  <StyledButton onClick={onClick}>{children}</StyledButton>
+const Button = ({ onClick, children, styles }) => (
+  <StyledButton onClick={onClick} styles={styles}>
+    {children}
+  </StyledButton>
 );
 
 export default Button;
