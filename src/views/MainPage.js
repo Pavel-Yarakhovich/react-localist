@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
+import axios from "axios";
 
 import Dropzone from "../components/DropZone";
 import DataTable from "../components/DataTable";
 import Steps from "../components/Steps";
 import UserBlock from "../components/UserBlock";
 import ThemeToggle from "../components/ThemeToggle";
+import StyledScrollbarWrapper from "../shared/StyledScrollbarWrapper";
 
 import { prepareInitialDataFromJson, combineTranslations } from "../utils";
 
@@ -31,6 +33,9 @@ const Content = styled.div`
   max-width: 1200px;
   padding: 0.5rem;
   box-sizing: border-box;
+  height: calc(100vh - 60px);
+  overflow: auto;
+  padding-top: 10px;
 `;
 
 const Title = styled.div`
@@ -127,6 +132,13 @@ const MainPage = ({ toggleTheme, currTheme }) => {
   }, [chosenFiles, uploadedFiles, templateFile]);
 
   useEffect(() => {
+    axios
+      .get("http://localhost:3000/users")
+      .then((res) => console.log("res ", res))
+      .catch((err) => console.log("err ", err));
+  }, []);
+
+  useEffect(() => {
     let content;
 
     switch (currStep) {
@@ -164,9 +176,19 @@ const MainPage = ({ toggleTheme, currTheme }) => {
         <h1>React-localist</h1>
         <UserBlock />
       </Title>
+
       <Content>
-        <Steps steps={stepsArr} currStep={currStep} setCurrStep={setCurrStep} />
-        {content}
+        <StyledScrollbarWrapper
+          thumbColor={"orange"}
+          style={{ height: "100%" }}
+        >
+          <Steps
+            steps={stepsArr}
+            currStep={currStep}
+            setCurrStep={setCurrStep}
+          />
+          {content}
+        </StyledScrollbarWrapper>
       </Content>
     </Wrapper>
   );

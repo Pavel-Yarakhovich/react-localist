@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useTable, usePagination } from "react-table";
 
 import Button from "../shared/Button";
+import StyledScrollbarWrapper from "../shared/StyledScrollbarWrapper";
 import { convertUpdatedTableDataToJsonLikeStructure } from "../utils";
 
 const Styles = styled.div`

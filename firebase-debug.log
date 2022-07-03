@@ -1,0 +1,32 @@
+[debug] [2022-03-07T14:15:12.158Z] ----------------------------------------------------------------------
+[debug] [2022-03-07T14:15:12.159Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2022-03-07T14:15:12.159Z] CLI Version:   10.2.2
+[debug] [2022-03-07T14:15:12.160Z] Platform:      win32
+[debug] [2022-03-07T14:15:12.160Z] Node Version:  v14.17.3
+[debug] [2022-03-07T14:15:12.160Z] Time:          Mon Mar 07 2022 17:15:12 GMT+0300 (Москва, стандартное время)
+[debug] [2022-03-07T14:15:12.160Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-03-07T14:15:12.204Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-03-07T14:15:12.204Z] > authorizing via signed-in user (pavel.yarri@gmail.com)
+[debug] [2022-03-07T14:15:12.204Z] [iam] checking project react-localist for permissions ["firebase.projects.get"]
+[debug] [2022-03-07T14:15:12.206Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/react-localist:testIamPermissions [none]
+[debug] [2022-03-07T14:15:12.206Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/react-localist:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-03-07T14:15:13.125Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/react-localist:testIamPermissions 200
+[debug] [2022-03-07T14:15:13.125Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/react-localist:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-03-07T14:15:13.126Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/react-localist [none]
+[debug] [2022-03-07T14:15:13.561Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/react-localist 200
+[debug] [2022-03-07T14:15:13.562Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/react-localist {"projectId":"react-localist","projectNumber":"272912667085","displayName":"react-localist","name":"projects/react-localist","resources":{"hostingSite":"react-localist"},"state":"ACTIVE"}
+[info] 
+[info] === Serving from 'D:\Personal_projects\react-localist'...
+[info] 
+[debug] [2022-03-07T14:15:13.565Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/react-localist/sites 
+[debug] [2022-03-07T14:15:14.528Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/react-localist/sites 200
+[debug] [2022-03-07T14:15:14.528Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/react-localist/sites {"sites":[{"name":"projects/272912667085/sites/react-localist","defaultUrl":"https://react-localist.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2022-03-07T14:15:14.528Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/react-localist/webApps/-/config [none]
+[debug] [2022-03-07T14:15:15.177Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/react-localist/webApps/-/config 200
+[debug] [2022-03-07T14:15:15.177Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/react-localist/webApps/-/config {"projectId":"react-localist","storageBucket":"react-localist.appspot.com","apiKey":"AIzaSyCkOSfl0NdvbEfDn6-xXLM1CukbLW0VD7M","authDomain":"react-localist.firebaseapp.com","messagingSenderId":"272912667085"}
+[info] i  hosting: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] +  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[info] i  hosting: 127.0.0.1 - - [07/Mar/2022:14:15:27 +0000] "GET / HTTP/1.1" 200 1721 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [07/Mar/2022:14:15:27 +0000] \"GET / HTTP/1.1\" 200 1721 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [07/Mar/2022:14:15:27 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [07/Mar/2022:14:15:27 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [07/Mar/2022:14:15:27 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [07/Mar/2022:14:15:27 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36\""}}
