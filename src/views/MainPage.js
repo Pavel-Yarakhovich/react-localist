@@ -6,6 +6,7 @@ import DataTable from "../components/DataTable";
 import Steps from "../components/Steps";
 import UserBlock from "../components/UserBlock";
 import ThemeToggle from "../components/ThemeToggle";
+import StyledScrollbarWrapper from "../shared/StyledScrollbarWrapper";
 
 import { prepareInitialDataFromJson, combineTranslations } from "../utils";
 
@@ -175,9 +176,19 @@ const MainPage = ({ toggleTheme, currTheme }) => {
         <h1>React-localist</h1>
         <UserBlock />
       </Title>
+
       <Content>
-        <Steps steps={stepsArr} currStep={currStep} setCurrStep={setCurrStep} />
-        {content}
+        <StyledScrollbarWrapper
+          thumbColor={"orange"}
+          style={{ height: "100%" }}
+        >
+          <Steps
+            steps={stepsArr}
+            currStep={currStep}
+            setCurrStep={setCurrStep}
+          />
+          {content}
+        </StyledScrollbarWrapper>
       </Content>
     </Wrapper>
   );
