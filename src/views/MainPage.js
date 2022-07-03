@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import axios from "axios";
 
 import Dropzone from "../components/DropZone";
 import DataTable from "../components/DataTable";
@@ -31,6 +32,9 @@ const Content = styled.div`
   max-width: 1200px;
   padding: 0.5rem;
   box-sizing: border-box;
+  height: calc(100vh - 60px);
+  overflow: auto;
+  padding-top: 10px;
 `;
 
 const Title = styled.div`
@@ -125,6 +129,13 @@ const MainPage = ({ toggleTheme, currTheme }) => {
       setData(data);
     }
   }, [chosenFiles, uploadedFiles, templateFile]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/users")
+      .then((res) => console.log("res ", res))
+      .catch((err) => console.log("err ", err));
+  }, []);
 
   useEffect(() => {
     let content;
